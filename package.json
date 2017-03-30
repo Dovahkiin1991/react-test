@@ -1,0 +1,14 @@
+{
+  "name": "react-test-project",
+  "version": "1.0.0",
+  "description": "React Test project",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Sasha Ulych",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.15.2"
+  }
+}
