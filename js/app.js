@@ -23,6 +23,14 @@ var News = React.createClass({
   propTypes: {
     data: React.PropTypes.array.isRequired
   },
+  getInitialState: function() {
+    return {
+      counter: 0
+    }
+  },
+  onTotalNewsClick: function() {
+    this.setState({counter: ++this.state.counter})
+  },
   render: function() {
     var data = this.props.data;
     var newsTemplate;
@@ -41,9 +49,31 @@ var News = React.createClass({
     return (
      <div className="news">
        {newsTemplate}
-       <strong className={'news__count ' + (data.length > 0 ? '':'none') }>All news: {data.length}</strong>
+       <strong className={'news__count ' + (data.length > 0 ? '':'none') } onClick={this.onTotalNewsClick}>All news: {data.length}</strong>
      </div>
    );
+  }
+});
+var TestInput = React.createClass({
+  //lifecycle component
+  componentDidMount: function() {
+    ReactDOM.findDOMNode(this.refs.myTestInput).focus(); //focus on our input
+  },
+  showValue: function() {
+    alert(ReactDOM.findDOMNode(this.refs.myTestInput).value);
+  },
+  render: function() {
+    return (
+      <div>
+        <input
+          className='test-input'
+          defaultValue=''
+          placeholder='Enter value'
+          ref='myTestInput'
+        />
+         <button onClick={this.showValue} ref='alert_button'>Show value</button>
+        </div>
+    );
   }
 });
 var Article = React.createClass({
@@ -84,6 +114,7 @@ var App = React.createClass({
     return (
       <div className="app">
         <h3>News</h3>
+        <TestInput /> {/* Comment */}
         <News data={my_news} />
       </div>
     );
